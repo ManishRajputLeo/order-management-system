@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -19,11 +20,12 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "customer_Id")
+    @JsonIgnore
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "product_id")
-    @JsonIgnore
+    @JoinColumn(name = "product_id", nullable = false)
+    @ToString.Exclude
     private Product product;
 
 }

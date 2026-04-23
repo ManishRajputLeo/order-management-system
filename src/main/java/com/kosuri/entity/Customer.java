@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -17,10 +18,10 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long customerId;
 
     @OneToMany(mappedBy = "customer")
-    @Column(name = "customer_id")
-    @JsonIgnore
+    @Column(name = "customer_id",  nullable = false)
+    @ToString.Exclude
     private List<Order> orders;
 }

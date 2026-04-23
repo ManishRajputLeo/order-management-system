@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class Product {
     private String productName;
 
     @ManyToOne
-    @JoinColumn(name = "store_id")
-    @JsonIgnore
+    @JoinColumn(name = "store_id", nullable = false)
+    @ToString.Exclude
     private Store store;
 }

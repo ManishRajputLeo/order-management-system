@@ -25,7 +25,12 @@ public class OrderService {
     private CustomerRepository customerRepository;
 
     public List<Order> getAllOrders() {
-        return orderRepository.findAll();
+        List<Order> orders = orderRepository.findAll();
+
+        for (Order o : orders) {
+            System.out.println("Product: " + o.getProduct());
+        }
+        return orders;
     }
 
     public Order getOrderById(Long id) {
@@ -47,7 +52,7 @@ public class OrderService {
 
         if (updatedOrder.getCustomer() != null) {
             Customer customer = customerRepository.findById(
-                    updatedOrder.getCustomer().getId()
+                    updatedOrder.getCustomer().getCustomerId()
             ).orElseThrow(() -> new RuntimeException("Customer not found"));
 
             existing.setCustomer(customer);
